@@ -4,6 +4,7 @@ import { GetStaticProps } from 'next'
 import { useKeenSlider } from 'keen-slider/react'
 
 import { stripe } from '@/lib/stripe'
+import { priceFormatter } from '@/utils/formatter'
 import 'keen-slider/keen-slider.min.css'
 
 import * as S from '@/styles/pages/home'
@@ -52,7 +53,7 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: Number(price.unit_amount) / 100,
+      price: priceFormatter.format(Number(price.unit_amount) / 100),
     }
   })
 
